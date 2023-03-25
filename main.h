@@ -10,6 +10,7 @@ int print_string(va_list args, int count);
 int printf_unsigned(unsigned int num, int count);
 void write_buffer(const char *message);
 int printf_pointer(va_list args, int count);
+void print_pointer_address(const char *format, ...);
 void print_binary(unsigned int num);
 int custom_printf(const char *format, ...);
 #endif
