@@ -1,39 +1,36 @@
 #include "main.h"
 /**
- * print_int - handle d, i format specifiers
- *
- * @args: arguments
- * @buf: buffer array
- * @flags: calculate active flags
- * @width: get width
- * @precision: precision specification
- * @size: size specifier
- * Return: number of chars
+ * print_int - prints signed integer number
+ * @args: argument of integer type
+ * @buffer: pointer of 1byte size
+ * Return: number of bytes printed
  */
-int print_int(va_list args, char buf[], int flags,
-		int width, int precision, int size)
+int print_int(va_list args, char *buffer)
 {
-	int i = BUFF_SIZE - 2;
-	int is_negative = 0;
-	long int n = va_arg(args, long int);
-	unsigned long int num;
+	int num;
+	unsigned int pos_num, b, digit_num = 1, i = 0;
+	char let;
 
-	n = convert_size_number(n, size);
-	if (n == 0)
-		buf[i--] = '0';
-	buf[BUFF_SIZE - 1] = '\0';
-	num = (unsigned long int)n;
-	if (n < 0)
+	num = va_arg(args, int);
+	if (num < 0)
 	{
-		num = (unsigned long int)((-1) * n);
-		is_negative = 1;
+		let = 45;
+		buffer[i] = let;
+		pos_num = num * -1;
+		i++;
 	}
-	while (num > 0)
+	else
+		pos_num = num;
+	b = pos_num;
+	while (b > 9)
 	{
-		buf[i--] = (num % 10) + '0';
-		num /= 10;
+		b /= 10;
+		digit_num *= 10;
 	}
-	i++;
-	return (write_number(is_negative, i, buf, flags, width, precision, size));
+	for (; digit_num > 0; digit_num /= 10)
+	{
+		let = ((pos_num / digit_num) + 48);
+		buffer[i] = let, i++, pos_num %= digit_num;
+	}
+	return (_print_buf(buffer, i));
 }
-

@@ -1,29 +1,70 @@
 #include "main.h"
 /**
- * print_string - print string
- * @count: num of chars printed
- * @args: arguments
- * Return: num of chars printed
+ * custom_hex - prints hexadecimal value
+ * of custom characters
+ * @ascii: ascii value of custom character
+ * Return: number of printed bytes
  */
-int print_string(va_list args, int count)
+int custom_hex(int ascii)
 {
-	int len = 0;
-	int i;
-	char *str = va_arg(args, char *);
+	unsigned int num, digit = 1, b;
+	char let, zero = '0';
+	int l = 0;
+	char slash = '\\';
+	char x = 'x';
 
-	while (str != '\0')
+	num = ascii;
+	b = num;
+	while (b > 15)
 	{
-		if (*str < 32 || *str >= 127)
+		digit *= 16;
+		b /= 16;
+	}
+	l += _print_buf(&slash, 1);
+	l += _print_buf(&x, 1);
+	for (; digit > 0; digit /= 16)
+	{
+		b = (num / digit);
+		if (b > 9)
+			let = (((num / digit) + 7) + '0');
+		else
+			let = (num / digit) + '0';
+		if (digit == 1 && l == 2)
+			l += _print_buf(&zero, 1);
+		l += _print_buf(&let, 1);
+		num %= digit;
+	}
+	return (l);
+}
+/**
+ * custom_str - prints custom character to the console
+ * @args: arguments
+ * @buffer: pointer to character
+ * Return: number of character printed
+ */
+int custom_str(va_list args, char *buffer)
+{
+	int i = 0, len = 0;
+	char *null;
+	char let;
+
+	buffer = va_arg(args, char *);
+	if (!buffer)
+	{
+		null = "(null)";
+		return (_print_buf(null, 6));
+	}
+	for (; buffer[i] != '\0'; i++)
+	{
+		if (buffer[i] < 32 || buffer[i] >= 127)
 		{
-			printf("\\x%02X", (unsigned char)*str);
-			count += 4;
+			len += custom_hex(buffer[i]);
 		}
 		else
 		{
-			putchar(*str);
-			count++;
+			let = buffer[i];
+			len += _print_buf(&let, 1);
 		}
-		str++;
 	}
-	return (count);
+	return (len);
 }

@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * print_address - prints the address of pointer
+ * print_pointer - prints the address of pointer
  * @args: the arguments
  * @buffer: memory space
  * Return: number of printed bytes
  */
-int print_address(va_list args, char *buffer)
+int print_pointer(va_list args, char *buffer)
 {
 	unsigned long int addr, a, b = 1;
 	unsigned int i = 0;

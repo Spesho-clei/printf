@@ -1,33 +1,29 @@
 #include "main.h"
 /**
- * printf_octal - print o specifier
- *
- * @num: input
- * @count: num of chars printed
- * Return: num of chars printed
+ * print_octal - prints unsigned integer number
+ * using octal base
+ * @args: argument of integer type
+ * @buffer: pointer of 1byte size
+ * Return: number of bytes printed
  */
-int printf_octal(unsigned int num, int count)
+int print_octal(va_list args, char *buffer)
 {
-	int i = 0, j, zeros;
-	char octal[32];
+	unsigned int num;
+	unsigned int pos_num, b, digit_num = 1, i = 0;
+	char let;
 
-	if (count <= 0)
+	num = va_arg(args, unsigned int);
+	pos_num = num;
+	b = pos_num;
+	while (b > 7)
 	{
-		return (-1);
+		b /= 8;
+		digit_num *= 8;
 	}
-	do {
-		octal[i++] = '0' + (num % 8);
-		num /= 8;
-	}
-	while (num > 0)
-	zeros = count - i;
-	for (j = 0; j < zeros; j++)
+	for (; digit_num > 0; digit_num /= 8)
 	{
-		putchar('0');
+		let = ((pos_num / digit_num) + 48);
+		buffer[i] = let, i++, pos_num %= digit_num;
 	}
-	for (j = i - 1; j >= 0; j--)
-	{
-		putchar(octal[j]);
-	}
-	return (count);
+	return (_print_buf(buffer, i));
 }
