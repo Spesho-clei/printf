@@ -1,25 +1,13 @@
 #include "main.h"
-#include <string.h>
-#include <unistd.h>
 /**
- * write_buffer - function to call write
+ * _print_buf - prints a buffer to the console
  *
- * @message: constant parameter
- * Return: nothing
+ * @buf: buffer pointer
+ * @n: number of bytes to be printed
+ * Return: number of bytes  printed
  */
-void write_buffer(const char *message)
+
+int _print_buf(char *buf, int n)
 {
-	static char buffer[1024];
-	static int bufferpos;
-	int messagelen = strlen(message);
-
-	if (bufferpos + messagelen > 1024)
-	{
-		write(1, buffer, bufferpos);
-		bufferpos = 0;
-	}
-	memcpy(buffer + bufferpos, message, messagelen);
-	bufferpos += messagelen;
+	return (write(1, buf, n));
 }
-
-

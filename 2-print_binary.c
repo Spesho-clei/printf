@@ -1,47 +1,63 @@
 #include "main.h"
+#include <limits.h>
 /**
- * custom_printf - function to handle b conversion specifier
- *
- * @format: string
- * Return: num of printed chars
+ * rev_binary - fills the array from right to left
+ * with the binary value of the number
+ * @bin: array of memory
+ * @size: size of binary memory in byte or positive
+ * @q: the number in decimal value and positive
+ * Return: array of binary number
  */
-int custom_printf(const char *format, ...)
+char *rev_binary(char *bin, unsigned int q, int size)
 {
-	int num_chars_printed = 0;
-	const char *ptr = format;
-	va_list args;
+	int i;
 
-	va_start(args, format);
-	while (*ptr != '\0')
+	for (i = 0; i < size; i++)
+		bin[i] = '0';
+	bin[i] = '\0';
+	for (i = size - 1; q > 1; i--)
 	{
-		if (*ptr == '%')
-		{
-			++ptr;
-			if (*ptr == 'b')
-			{
-				unsigned int arg = va_arg(args, unsigned int);
-
-				if (arg > 1)
-				{
-					custom_printf("%b", arg / 2);
-				}
-				putchar(arg % 2 ? '1' : '0');
-				num_chars_printed += sizeof(unsigned int) * 8;
-			}
-			else
-			{
-				putchar('%');
-				putchar(*ptr);
-				num_chars_printed += 2;
-			}
-		}
-			else
-			{
-				putchar(*ptr);
-				++num_chars_printed;
-			}
-			++ptr;
+		if (q % 2 != 0)
+			bin[i] = '1';
+		q /= 2;
 	}
-		va_end(args);
-		return (num_chars_printed);
+	if (q != 0)
+		bin[i] = '1';
+	return (bin);
+}
+/**
+ * print_bin - prints unsigned int in binary format
+ * @args: arguments
+ * @buffer: the pointer
+ * Return: number of printed int
+ */
+int print_bin(va_list args, char *buffer)
+{
+	int num;
+	unsigned int q, a;
+	int size = 0;
+	char *bin;
+
+	num = va_arg(args, int);
+	if (num == 0)
+	{
+		buffer[0] = '0';
+		_print_buf(buffer, 1);
+		return (1);
+	}
+	else
+		q = num;
+	a = q;
+	while (a > 0)
+	{
+		a /= 2;
+		size++;
+	}
+	bin = malloc(sizeof(char) * (size + 1));
+	if (bin == NULL)
+		return (-1);
+	rev_binary(bin, q, size);
+	_print_buf(bin, size);
+	free(bin);
+	return (size);
 }

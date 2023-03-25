@@ -1,16 +1,42 @@
 #include "main.h"
 /**
- * print_pointer_address - function to print p specifier
- * @format: constant parameter
- * Return: nothing
+ * print_address - prints the address of pointer
+ * @args: the arguments
+ * @buffer: memory space
+ * Return: number of printed bytes
  */
-void print_pointer_address(const char *format, ...)
+int print_address(va_list args, char *buffer)
 {
-	void *ptr;
-	va_list args;
+	unsigned long int addr, a, b = 1;
+	unsigned int i = 0;
+	char let;
 
-	va_start(args, format);
-	ptr = va_arg(args, void *);
-	printf("%p\n", ptr);
-	va_end(args);
+	addr = va_arg(args, unsigned long int);
+	if (addr == 0)
+	{
+		buffer[i] = '0', i++;
+		return (_print_buf(buffer, i));
+	}
+	if (!addr)
+	{
+		buffer = "(nil)";
+		return (_print_buf(buffer, 5));
+	}
+	a = addr;
+	buffer[i] = '0', i++, buffer[i] = 'x', i++;
+	while (a > 15)
+	{
+		b *= 16;
+		a /= 16;
+	}
+	for (; b > 0; b /= 16)
+	{
+		a = (addr / b);
+		if (a < 9)
+			let = (a + '0');
+		else
+			let = ((a + 39) + '0');
+		buffer[i] = let, i++, addr %= b;
+	}
+	return (_print_buf(buffer, i));
 }
