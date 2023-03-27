@@ -2,7 +2,7 @@
 /**
  * print_letter - prints single letter
  * @format: the string format
- * @index: index of the letterin the format
+ * @index: index of the lette in the format
  * Return: 1(length of the letter)
  */
 int print_letter(const char *format, int index)
