@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * print_plus_int - prints signed integer number with plus sign for positive numbers
+ * print_plus_int - prints signed integer number
+ * with plus sign for positive numbers
  *
  * @args: argument of integer type
  * @buffer: pointer to buffer to store printed characters
