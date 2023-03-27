@@ -28,5 +28,6 @@ int print_low_hex(va_list, char *buffer);
 int print_upp_hex(va_list, char *buffer);
 int print_octal(va_list, char *buffer);
 int custom_str(va_list, char *buffer);
+int print_octal_zero(va_list args, char *buffer);
 
 #endif
