@@ -14,8 +14,7 @@ int (*switch_funct(const char *s, int *pos))(va_list args, char *buf)
 		{"S", custom_str}, {"p", print_pointer},
 		{"o", print_octal}, {" +d", print_plus_int},
 		{"+ d", print_plus_int}, {" +i", print_plus_int},
-		{"+ i", print_plus_int}, {"#d", print_hash_int},
-		{NULL, NULL}};
+		{"+ i", print_plus_int}, {NULL, NULL}};
 
 	int i, j, k = 0;
 	(*pos)++;

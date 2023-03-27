@@ -31,6 +31,5 @@ int custom_str(va_list, char *buffer);
 int print_octal_zero(va_list args, char *buffer);
 int print_space_int(va_list args, char *buffer);
 int print_plus_int(va_list args, char *buffer);
-int print_hash_int(va_list args, char *buffer);
 
 #endif
