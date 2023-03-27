@@ -13,10 +13,10 @@ int (*switch_funct(const char *s, int *pos))(va_list args, char *buf)
 		{"x", print_low_hex}, {"X", print_upp_hex},
 		{"S", custom_str}, {"p", print_pointer},
 		{"o", print_octal},{"i", print_space_int},
-		{"+d", print_plus_int},{" d", print_space_int}
+		{"+d", print_plus_int},{" d", print_space_int},
 		{"+i", print_plus_int},{" +d", print_plus_int},
-{" +i", print_plus_int},{"i", print_plus_int},
-{NULL, NULL}};
+		{" +i", print_plus_int},{"i", print_plus_int},
+		{NULL, NULL}};
 
 	int i, j, k = 0;
 	(*pos)++;
