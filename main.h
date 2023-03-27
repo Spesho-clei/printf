@@ -28,8 +28,12 @@ int print_low_hex(va_list, char *buffer);
 int print_upp_hex(va_list, char *buffer);
 int print_octal(va_list, char *buffer);
 int custom_str(va_list, char *buffer);
+<<<<<<< HEAD
+int print_octal_zero(va_list args, char *buffer);
+=======
 int print_space_int(va_list args, char *buffer);
 int print_plus_int(va_list args, char *buffer);
 int print_hash_int(va_list args, char *buffer);
+>>>>>>> c5967e87dea5a056f2a3616ce1c2ec6c5c4ee1aa
 
 #endif
