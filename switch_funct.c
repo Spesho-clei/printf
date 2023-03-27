@@ -12,7 +12,15 @@ int (*switch_funct(const char *s, int *pos))(va_list args, char *buf)
 		{"b", print_bin}, {"u", print_unint},
 		{"x", print_low_hex}, {"X", print_upp_hex},
 		{"S", custom_str}, {"p", print_pointer},
+<<<<<<< HEAD
 		{"o", print_octal},{"#o", print_octal_zero},
+=======
+		{"o", print_octal},{"i", print_space_int},
+		{"+d", print_plus_int},{" d", print_space_int},
+		{"+i", print_plus_int},{" +d", print_plus_int},
+		{" +i", print_plus_int},{"i", print_plus_int},
+		{"#d", print_hash_int}, {"#i", print_hash_int},
+>>>>>>> c5967e87dea5a056f2a3616ce1c2ec6c5c4ee1aa
 		{NULL, NULL}};
 
 	int i, j, k = 0;
