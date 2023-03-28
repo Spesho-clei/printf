@@ -72,5 +72,6 @@ int print_address(va_list l, flags_t *f);
 
 /* print_percent */
 int print_percent(va_list l, flags_t *f);
-
+/* get preciosn */
+int get_precision(const char *format, int *i, va_list list);
 #endif
