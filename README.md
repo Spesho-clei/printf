@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 0x11 C-printf project 
 Group project
 
@@ -69,7 +68,7 @@ r : prints the reversed string
 
 R: prints the rot13'ed string
 15. All the above options work well together
-=======
+
 Printf Project
 
 The printf function is a popular function in the C programming language that is used for printing formatted output. In this group project, we have implemented our own version of printf that mimics the actual C printf function, including all format identifiers.
@@ -116,5 +115,3 @@ Contributors
 This project was created by Dickens Owino and Nancy Jepkoech. We welcome suggestions and contributions from other developers interested in enhancing our printf implementation.
 
 We hope you find our implementation helpful!
-
->>>>>>> 164d7b0e173fff99894db8f5a892611fdd27be5d
